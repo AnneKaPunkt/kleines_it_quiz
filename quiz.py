@@ -2,38 +2,49 @@ def main():
     print("=== Wilkommen beim IT_Fachbegriffe-Quiz ===")
     print("Teste dein Wissen!\n")
 
-    # Ein Wörterbuch (Dictionary) für die Frage erstellen
-    frage_data = {
-        "text" : "Was bedeutet die Abkürzung 'RAM'?",
-        "optionen" : "A) Read Access Memory\nB) Random Access Memory",
-        "loesung" : "B"
-    } 
+    # Eine Liste, die mehrere Dictionaries (Fragen) beinhaltet
+    fragenpool = [
+        {
+            "text" : "Was bedeutet die Abkürzung 'RAM'?",
+            "optionen" : "A) Read Access Memory\nB) Random Access Memory",
+            "loesung" : "B"
+        },
+        {
+            "text" : "Welches Protokoll wird für sichere Webseiten genutzt?",
+            "optionen" : "A) HTTP\nB) HTTPS ",
+            "loesung" : "B"
+        },
+        {
+            "text" : "Was ist Python in der IT-Welt?",
+            "optionen" : "A) Eine Programmiersprache\nB) Ein Betriebssystem",
+            "loesung" : "A"
+        } 
+    ]
 
-    # Die Daten aus dem Dictionary über die Schlüssel (Keys) anzeigen
-    print(frage_data["text"])
-    print(frage_data["optionen"])
+    # Eine Variable um die Punkte des Spielers zu zählen
+    punkte = 0
 
-    # # Eine Frage auf dem Bildschirm anzeigen
-    # print("Frage 1: Was bedeutet die Abkürzung 'RAM'?")
-    # print("A) Read Access Memory\nB) Random Access Memory")
+    # Die For-Schleife läuft jede Frage im Pool nacheinander durch
+    for frage in fragenpool:
+        print("-- NÄCHSTE FRAGE --")
+        print(frage["text"])
+        print(frage["optionen"])
+
 
     # Eingabe vom Nutzer holen, Leerzeichen entfernen (.strip) und in Großbuchstaben umwandeln (.upper)
-    antwort = input("Deine Antwort (A oder B):").strip().upper()
-
-    # Die Antwort überprüfen
-    # if antwort == "B":
-    #     print("Yüpppiiieee! Richtig :) RAM steht für Random Access Memory")
-    # else:
-    #     print("Nöpedi...nö! Leider falsch :( RAM steht für Random Access Memory")
+        antwort = input("Deine Antwort (A oder B):").strip().upper()
 
     # Wir prüfen direkt gegen den Wert hinter dem Schlüssel "loesung"
+        if antwort == frage["loesung"]:
+            print("Yüpppiiieee! Richtig :) + 1 Punkt\n")
+            punkte += 1
+        else:
+            print(f"Nöpedi...nö! Leider falsch. :( Die richtige Antwort ist {frage['loesung']}.\n")
 
-    if antwort == frage_data["loesung"]:
-        print("Yüpppiiieee! Richtig :) RAM steht für Random Access Memory")
-    else:
-         print(f"Nöpedi...nö! Leider falsch. :( Die richtige Antwort ist {frage_data['loesung']} (Random Access Memory).")
+    # Das Endergebnis nach der Schleife anzeigen
+        print("=== SPIEL ENDE ===")
+        print(f"Du hast {punkte} von {len(fragenpool)} Punkten erreicht!")
         
-
 
 if __name__ == "__main__":
     main()
